@@ -108,7 +108,7 @@ void StringListAdd(char**& list, char* str)
 
 void StringListRemove(char** list, char* str)
 {
-    if (list == nullptr)
+    if (list == nullptr || str == nullptr)
     {
         return;
     }
