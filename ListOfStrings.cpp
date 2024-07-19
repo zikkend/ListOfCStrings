@@ -76,9 +76,9 @@ void StringListDestroy(char**& list)
 
 void StringListAdd(char**& list, char* str)
 {
-    if (list == nullptr)
+    if (list == nullptr || str == nullptr)
     {
-        std::cout << "list mustn't be nullptr" << std::endl;
+        std::cout << "list and str mustn't be nullptr" << std::endl;
         return;
     }
 
@@ -149,7 +149,7 @@ int StringListSize(char** list)
 
 int StringListIndexOf(char** list, char* str)
 {
-    if (list == nullptr)
+    if (list == nullptr || str == nullptr)
     {
         return -1;
     }
@@ -207,12 +207,18 @@ inline static size_t CalculateReplacementsCount(const char* str, const char* bef
 
 char* ReplaceSubstring(const char* str, const char* before, const char* after)
 {
+    if (before == nullptr || after == nullptr)
+    {
+        return nullptr;
+    }
+
     size_t len_before = strlen(before);
     if (len_before == 0)
     {
         return nullptr;
     }
     size_t len_after = strlen(after);
+    
 
     size_t count = CalculateReplacementsCount(str, before, after);
     if (count == 0)
@@ -244,7 +250,7 @@ char* ReplaceSubstring(const char* str, const char* before, const char* after)
 
 void StringListReplaceInStrings(char** list, const char* before, const char* after)
 {
-    if (list == nullptr)
+    if (list == nullptr || before == nullptr || after == nullptr)
     {
         return;
     }
