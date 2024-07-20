@@ -9,19 +9,18 @@ int main()
         StringListInit(list);
 
         StringListAdd(list, (char*)"a");
-        StringListAdd(list, (char*)"c");
-        StringListAdd(list, (char*)"d");
+        StringListAdd(list, (char*)"a");
         StringListAdd(list, (char*)"b");
         StringListAdd(list, (char*)"a");
-        StringListAdd(list, (char*)"f");
-        StringListAdd(list, (char*)"b");
-        StringListAdd(list, (char*)"m");
+        StringListAdd(list, (char*)"c");
+        StringListAdd(list, (char*)"a");
+        StringListAdd(list, (char*)"d");
 
         PrintStringList((const char**)list);
 
         std::cout << "Remove all duplicates" << std::endl;
 
-        StringListRemoveDuplicates(list);
+        StringListRemove(list, (char*)"a");
         PrintStringList((const char**)list);
 
         StringListDestroy(list);

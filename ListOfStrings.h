@@ -12,7 +12,7 @@ void StringListDestroy(char**& list);
 /* Inserts value at the end of the list. */
 void StringListAdd(char**& list, char* str);
 /* Removes all occurrences of str in the list. */
-void StringListRemove(char** list, char* str);
+size_t StringListRemove(char** list, char* str);
 
 /* Returns the number of items in the list. */
 int StringListSize(char** list);

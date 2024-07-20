@@ -106,32 +106,43 @@ void StringListAdd(char**& list, char* str)
     UpdateMetaString(list, size + 1, capacity);
 }
 
-void StringListRemove(char** list, char* str)
+size_t StringListRemove(char** list, char* str)
 {
     if (list == nullptr || str == nullptr)
     {
-        return;
+        return 0;
     }
    
     size_t size, capacity;
     GetSizeAndCapacity(list[0], size, capacity);
 
-    for (size_t i = 1; i < size + 1; ++i)
+    size_t elements_to_delete = 0;
+    for (size_t i = 1; i < size + 1; i++)
     {
         if (strcmp(list[i], str) == 0)
         {
-            free(list[i]);
+           elements_to_delete++;
+           continue;
+        }
 
-            // Shift elements to the left
-            for (size_t j = i; j < size; ++j)
-                list[j] = list[j + 1];
-
-            size--;
-            i--;
+        if (elements_to_delete > 0 && elements_to_delete < i)
+        {
+            // swap list[i] and list[i-elements_to_delete]
+            char* tmp = list[i];
+            list[i] = list[i - elements_to_delete];
+            list[i - elements_to_delete] = tmp;
         }
     }
+
+    for (size_t i = 0; i < elements_to_delete; i++)
+    {
+        free(list[size - i]);
+    }
+    size = size - elements_to_delete;
     
     UpdateMetaString(list, size, capacity);
+    
+    return elements_to_delete;
 }
 
 int StringListSize(char** list)
