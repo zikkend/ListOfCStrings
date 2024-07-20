@@ -205,7 +205,7 @@ void StringListRemoveDuplicates(char**& list)
     UpdateMetaString(list, size, capacity);
 }
 
-inline static size_t CalculateReplacementsCount(const char* str, const char* before, const char* after)
+inline static size_t CalculateReplacementsCount(const char* str, const char* before)
 {
     size_t count = 0, len_before = strlen(before);
     char* current_position = (char*)str,* before_position;
@@ -231,7 +231,7 @@ char* ReplaceSubstring(const char* str, const char* before, const char* after)
     size_t len_after = strlen(after);
     
 
-    size_t count = CalculateReplacementsCount(str, before, after);
+    size_t count = CalculateReplacementsCount(str, before);
     if (count == 0)
     {
         return nullptr;
