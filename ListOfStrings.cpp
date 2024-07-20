@@ -218,7 +218,7 @@ inline static size_t CalculateReplacementsCount(const char* str, const char* bef
 
 char* ReplaceSubstring(const char* str, const char* before, const char* after)
 {
-    if (before == nullptr || after == nullptr)
+    if (before == nullptr || after == nullptr || str == nullptr)
     {
         return nullptr;
     }
